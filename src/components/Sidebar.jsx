@@ -13,7 +13,8 @@ import {
     Building2,
     HelpCircle,
     MessageSquare,
-    Ban
+    Ban,
+    BookOpen
 } from 'lucide-react';
 import { cn } from '../utils';
 
@@ -35,6 +36,7 @@ export default function Sidebar({
     setShowMeta,
     onCopyAll,
     onExportJSON,
+    onOpenInstructions,
     conversationLength
 }) {
     const [isOpen, setIsOpen] = useState(true);
@@ -140,6 +142,14 @@ export default function Sidebar({
                                 Copiar
                             </button>
                         </div>
+
+                        <button
+                            onClick={onOpenInstructions}
+                            className="w-full flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-medium text-indigo-300 hover:text-indigo-200 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 rounded-lg transition-colors mb-2"
+                        >
+                            <BookOpen className="w-4 h-4" />
+                            Ver Instructivo
+                        </button>
 
                         <button
                             onClick={onExportJSON}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import ChatWindow from './components/ChatWindow';
 import Checklist from './components/Checklist';
+import InstructionsModal from './components/InstructionsModal';
 import { sendMessage } from './api';
 
 // Hardcoded configuration for internal testing
@@ -29,6 +30,7 @@ function App() {
     });
 
     const [threadId, setThreadId] = useState(() => localStorage.getItem('ml_thread_id'));
+    const [showInstructions, setShowInstructions] = useState(false);
     const [showMeta, setShowMeta] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -155,6 +157,7 @@ function App() {
                 setShowMeta={setShowMeta}
                 onCopyAll={handleCopyAll}
                 onExportJSON={handleExportJSON}
+                onOpenInstructions={() => setShowInstructions(true)}
                 conversationLength={messages.length}
             />
 
@@ -170,6 +173,10 @@ function App() {
                 <Checklist
                     evaluation={evaluation}
                     setEvaluation={setEvaluation}
+                />
+                <InstructionsModal
+                    isOpen={showInstructions}
+                    onClose={() => setShowInstructions(false)}
                 />
             </main>
         </div>
